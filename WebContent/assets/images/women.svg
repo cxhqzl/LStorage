@@ -1,0 +1,30 @@
+<svg id="Group_3_copy" data-name="Group 3 copy" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #f27273;
+      }
+
+      .cls-1 {
+        opacity: 0.15;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        fill-rule: evenodd;
+      }
+
+      .cls-3 {
+        fill: #ffd8b7;
+      }
+
+      .cls-4 {
+        fill: #4c595f;
+      }
+    </style>
+  </defs>
+  <circle id="Ellipse_1_copy_2" data-name="Ellipse 1 copy 2" class="cls-1" cx="25" cy="25" r="25"/>
+  <path id="Ellipse_2_copy" data-name="Ellipse 2 copy" class="cls-2" d="M40.992,43.725c-1.331-7.418-6.582-14.716-16.017-14.716-9.117,0-14.58,7.2-15.983,14.527C8.8,44.55,16.47,50,24.975,50S41.164,44.68,40.992,43.725Z"/>
+  <path class="cls-3" d="M34.189,12.307s0.913,8.705-.806,12.109a4.091,4.091,0,0,1-4.135,2.321v5.236s-5.59,4.561-10.371,0V20.111L16.459,14.46l5.1-2.691Z"/>
+  <path class="cls-4" d="M14,34S8.443,21.906,12,12C15.875,1.208,29.985,4.392,34,8c4.888,4.393,4.165,9.009-1,7a4.968,4.968,0,0,1-6,0s-2.625,3.375-7,1L19,30S15.365,31.807,14,34Z"/>
+  <path class="cls-3" d="M21.129,16.277a2.084,2.084,0,0,0-2.976,2.217c0,3.319,2.728,2.494,2.728,2.494Z"/>
+</svg>

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Gappa is a bootstrap minimal & clean admin template">
+    <meta name="keywords" content="chat, chat platform, discussion, video call, voice call, communication, conversation, messange, messanger, talk">
+    <meta name="author" content="Themesbox">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>聊天</title>
+    <!-- Fevicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="images/cloud_icon.png" />
+    <!-- Start css -->
+    <!-- Slick css -->
+    <link href="assets/plugins/slick/slick.css" rel="stylesheet">
+    <link href="assets/plugins/slick/slick-theme.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/flag-icon.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+    <!-- End css -->
+</head>
+<body class="light-layout">
+    <!-- 添加好友弹出窗口 -->
+    <div class="modal create-group-modal fade" id="createGroup" tabindex="-1" role="dialog" aria-labelledby="createGroupTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createGroupTitle">添加好友</h5>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="add-users-search">
+                            <div class="input-group">
+                                <input type="search" id="add_friend_keys" class="form-control" placeholder="请输入账号或用户名" aria-label="Search" aria-describedby="add-users-search-btn">
+                                <div class="input-group-append">
+                                    <button onclick="searchAccount()" class="btn" type="button" id="add-users-search-btn"><i class="feather icon-search"></i></button>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="add-users-list">
+                            <ul class="list-unstyled" id="add_friend_mag">
+                                <!-- <li class="media">
+                                    <img class="align-self-center rounded-circle" src="assets/images/girl.svg" alt="Generic placeholder image">
+                                    <div class="media-body">
+                                        <h5><span>CXH</span></h5>
+                                        <p>248568750@qq.com</p>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="addFriend" id="addFriend1">
+                                        <label class="custom-control-label" for="addFriend1"></label>
+                                    </div>
+                                </li> -->
+                            </ul>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <button onclick="submitAddFriend()" type="button" class="btn btn-primary"><i class="feather icon-plus mr-2"></i>确认添加</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End 添加好友弹出窗口 -->
+    
+    <!-- 好友申请消息 -->
+    <div class="modal create-group-modal fade" id="friendMsg" tabindex="-1" role="dialog" aria-labelledby="createGroupTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createGroupTitle">申请消息</h5>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="add-users-list">
+                            <ul class="list-unstyled" id="show_add_friend_msg">
+                                <!-- <li class="media">
+                                    <img class="align-self-center rounded-circle" src="assets/images/girl.svg" alt="Generic placeholder image">
+                                    <div class="media-body">
+                                        <h5><span>CXH</span></h5>
+                                        <p>248568750@qq.com</p>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="userfirstAdd">
+                                        <label class="custom-control-label" for="userfirstAdd"></label>
+                                    </div>
+                                </li> -->
+                            </ul>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <button onclick="submitAgree()" type="button" class="btn btn-success mr-3"><i class="feather icon-check mr-2"></i>接受</button>
+                            <button onclick="submitRefuse()" type="button" class="btn btn-danger" data-dismiss="modal"><i class="feather icon-x mr-2"></i>拒绝</button>                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End 好友申请消息 -->
+	
+    <!-- 主页内容 -->
+    <div class="chat-layout">
+        <!-- Start 侧边 -->
+        <div class="chat-leftbar">
+            <div class="tab-content" id="pills-tab-justifiedContent">
+                <!-- 侧边聊天 -->
+                <div class="tab-pane fade show active" id="pills-chat-justified" role="tabpanel" aria-labelledby="pills-chat-tab-justified">
+                    <div class="chat-listbar">
+                        <div class="chat-left-headbar">
+                            <div class="row align-items-center">
+                                <div class="col-9">
+                                    <ul class="list-unstyled mb-0">
+										<a  href="index.html">
+											<li class="media">
+												<img class="align-self-center mr-2" src="images/LStorage.png" alt="Generic placeholder image">
+											</li>
+										</a>
+                                    </ul>
+                                </div>
+                                <div class="col-3">
+                                    <a href="#" data-toggle="modal" data-target="#createGroup"><i class="feather icon-users"></i></a>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="chat-left-search">
+                            <div>
+                                <div class="input-group">
+                                  <input type="search" class="form-control" placeholder="搜索" aria-label="Search" aria-describedby="chat-left-search-btn">
+                                  <div class="input-group-append">
+                                    <button class="btn" type="submit" id="chat-left-search-btn"><i class="feather icon-search"></i></button>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>                                     
+                        <div class="chat-left-body">       
+                            <div class="nav flex-column nav-pills chat-userlist" id="chat-list-tab" role="tablist" aria-orientation="vertical">
+                                <!-- <a class="nav-link active" id="chat-first-tab" data-toggle="pill" href="#chat-first" role="tab" aria-controls="chat-first" aria-selected="true">
+                                    <div class="media active">
+                                        <div class="user-status"></div>
+                                        <img class="align-self-center rounded-circle" src="assets/images/girl.svg" alt="User Image">
+                                        <div class="media-body">
+                                            <h5>Emily Cook<span class="chat-timing">02:30 pm</span></h5>
+                                            <p>Waiting for module 1 to finish...</p>
+                                        </div>
+                                    </div>
+                                </a>  -->                                  
+                               <!--  <a class="nav-link" id="chat-eighth-tab" data-toggle="pill" href="#chat-eighth" role="tab" aria-controls="chat-eighth" aria-selected="false">
+                                    <div class="media">
+                                        <div class="user-status status-away"></div>
+                                        <img class="align-self-center rounded-circle" src="assets/images/girl.svg" alt="User Image">
+                                        <div class="media-body">
+                                            <h5>Noir Ajkeban<span class="badge badge-primary ml-2">8</span> <span class="chat-timing">Sep 10</span></h5>
+                                            <p>See you at the Lunch...</p>
+                                        </div>
+                                    </div>
+                                </a>  -->
+                            </div>
+                        </div>                                       
+                    </div>                                    
+                </div>
+                <!-- End 侧边聊天 -->
+				
+            </div>
+            <div class="chat-menu">
+                <ul class="nav nav-pills nav-justified mb-0" id="pills-tab-justified" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-chat-tab-justified" data-toggle="pill" href="#pills-chat-justified" role="tab" aria-controls="pills-chat-justified" aria-selected="true"><i class="feather icon-message-circle"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- End 侧边 -->
+		
+        <!-- 聊天框 -->  
+        <div class="chat-rightbar">
+            <!--聊天内容 -->
+            <div class="chat-detail">
+                <div class="chat-head">
+                    <div class="row align-items-center">
+                        <div class="col-6">                                                
+                            <ul class="list-unstyled mb-0">
+                                <li class="media">
+                                    <div class="user-status"></div>
+                                    <img id="friendImg" class="align-self-center rounded-circle" src="">
+                                    <div class="media-body">
+                                        <h5 id="friendName"></h5>
+                                        <p class="mb-0" id="friendState"></p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <ul class="list-inline float-right mb-0">
+                                <li class="list-inline-item">
+                                	<div class="user-status" id="friend_msg_state"></div>
+                                    <a href="#" data-toggle="modal" data-target="#friendMsg"><i class="feather icon-users"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#" class="back-arrow"><i class="feather icon-x"></i></a>
+                                </li>
+                            </ul>                                            
+                        </div>
+                    </div>                                    
+                </div>
+                <div class="chat-body">
+					
+                    <div class="tab-content" id="chat-listContent">
+						
+						<!-- 单个好友聊天窗 -->
+                        <!-- 
+                        <div class="tab-pane fade show active" id="chat-first" role="tabpanel" aria-labelledby="chat-first-tab">
+                            日期
+							<div class="chat-day text-center mb-3">
+                                <span class="badge badge-secondary-inverse">今天</span>
+                            </div>   
+							End 日期
+							
+							我的消息显示
+                            <div class="chat-message chat-message-right">
+                                <div class="chat-message-text">
+                                    <span>你好，我是张三</span>
+                                </div>
+                                <div class="chat-message-meta">
+                                    <span>4:18 pm</span>
+                                </div>
+                            </div>
+							End 我的消息显示
+							
+							好友消息显示
+                            <div class="chat-message chat-message-left">
+                                <div class="chat-message-text">
+                                    <span>I have completed 4 stages 5 stages remaining.</span>
+                                </div>
+                                <div class="chat-message-meta">
+                                    <span>4:20 pm</span>
+                                </div>
+                            </div>
+							End 好友消息显示
+							
+							我的消息显示  图片
+                            <div class="chat-message chat-message-right">
+                                <div class="chat-message-text">
+                                    <div class="message-video">
+                                        <img width="210" src = "images/LStorage.png" />
+                                    </div>
+                                    <span>Demo.mp4</span>
+                                </div>
+                                <div class="chat-message-meta">
+                                    <span>4:25 pm</span>
+                                </div>
+                            </div>
+							End 我的消息显示  图片
+							
+							好友消息显示  图片
+							<div class="chat-message chat-message-left">
+							    <div class="chat-message-text">
+							        <div class="message-video">
+							            <img width="210" src = "images/LStorage.png" />
+							        </div>
+							        <span>Demo.mp4</span>
+							    </div>
+							    <div class="chat-message-meta">
+							        <span>4:25 pm</span>
+							    </div>
+							</div>
+							End 好友消息显示  图片
+                        </div> -->
+						<!-- End单个好友聊天窗 -->
+						
+						<!-- 未聊天实例 -->
+                        <!-- <div class="tab-pane fade show active" id="chat-eighth" role="tabpanel" aria-labelledby="chat-eighth-tab">
+                            <div class="empty-screen">
+                                <img src="assets/images/empty-logo.png" class="img-fluid" alt="empty-logo">
+                                <h4 class="my-3">暂无聊天记录</h4>
+                            </div>
+                        </div> -->
+						<!-- End 未聊天实例 -->
+                    </div>                    
+                </div>
+				
+				<!-- 消息输入框 -->
+                <div class="chat-bottom">
+                    <div class="chat-messagebar">
+                        <div>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="输入消息内容" aria-label="Text" id="msg">
+                                <div class="input-group-append">
+                                    <a href="#" class="mr-3" id="button-addonlink"><i class="feather icon-paperclip"></i></a>
+                                    <a href="javascript:void(0);" onclick="send()"><i class="feather icon-send"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<!-- End消息输入框 -->
+            </div>
+            <!-- End 聊天内容 -->
+        </div>
+        <!-- End 聊天框 -->
+    </div>
+    <!-- End 主页内容 -->
+    <!-- Start js -->        
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/modernizr.min.js"></script>
+    <script src="assets/js/detect.js"></script>
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <script src="assets/js/vertical-menu.js"></script>
+    <!-- Slick js -->
+    <script src="assets/plugins/slick/slick.min.js"></script>
+    <!-- Core js -->
+    <script src="assets/js/core.js"></script>
+    <script type="text/javascript" src="js/JavaScript_util.js"></script>
+    <script type="text/javascript" src="js/WebSocket.js"></script>
+    <!-- End js -->
+    <script type="text/javascript">
+    	webSocket = getWebSocket(sessionStorage.getItem("account"));
+    	getMyFriends();
+    	showAddFriendMsg();
+    	//监听回车键
+    	$(document).keyup(function(event){  
+    	    if(event.keyCode == 13){  
+    	    	send();
+    	    }
+    	});
+    	//获取我的好友
+    	function getMyFriends(){
+    		$.ajax({
+    			type : "POST",//方法类型
+    			dataType : "json",//预期服务器返回的数据类型
+    			url :  getURL() + "friend/getMyFriends",
+    			data : {
+    				myAccount : sessionStorage.getItem("account")
+    			},
+    			success : function(result) {
+    				var friendData = result.friendData;
+    				var str = "";
+    				var flag = false;
+    				var str1 = "";
+    				for(var i = 0; i < friendData.length; i++){
+    					var img = getImgURL() + "userImage/" + friendData[i].image;
+    					if(i == 0){
+    						flag = true;
+    					}
+    					if(true){
+    						str += `
+    							<a class="nav-link active" onclick="setFriendInfo('${img}','${friendData[i].userName}','在线','chat-${i}','${friendData[i].account}')" id="chat-tab-${i}" data-toggle="pill" href="#chat-${i}" role="tab" aria-controls="chat-${i}" aria-selected="${flag}">
+	    	                        <div class="media active">
+	    	                            <div class="user-status"></div>
+	    	                            <img class="align-self-center rounded-circle" src="${img}">
+	    	                            <div class="media-body">
+	    	                                <h5>${friendData[i].userName}<span class="chat-timing"></span></h5>
+	    	                                <p>${friendData[i].remark}</p>
+	    	                            </div>
+	    	                        </div>
+	    	                    </a>  
+    						`;
+    					}else{
+    						str += `
+    							 <a class="nav-link" onclick="setFriendInfo('${img}','${friendData[i].userName}','在线','chat-${i}','${friendData[i].account}')" id="chat-tab-${i}" data-toggle="pill" href="#chat-${i}" role="tab" aria-controls="chat-${i}" aria-selected="${flag}">
+	    	                        <div class="media">
+	    	                            <div class="user-status status-away"></div>
+	    	                            <img class="align-self-center rounded-circle" src="${img}">
+	    	                            <div class="media-body">
+	    	                                <h5>${friendData[i].userName}<span class="badge badge-primary ml-2">8</span> <span class="chat-timing">Sep 10</span></h5>
+	    	                                <p>${friendData[i].remark}</p>
+	    	                            </div>
+	    	                        </div>
+	    	                    </a>
+    						`;
+    					}  
+    					if(i == 0){
+    						str1 += `
+        						<div class="tab-pane fade show active" id="chat-${i}" role="tabpanel" aria-labelledby="chat-tab-${i}">
+    	                            <div class="empty-screen">
+    	                                <img src="assets/images/empty-logo.png" class="img-fluid" alt="empty-logo">
+    	                                <h4 class="my-3">暂无聊天记录</h4>
+    	                            </div>
+    	                        </div>
+        					`;
+    						sessionStorage.setItem("nowActiveId","chat-0");
+    						sessionStorage.setItem("msgFlag",0);
+    						sessionStorage.setItem("count",0);
+    					}else{
+    						str1 += `
+        						<div class="tab-pane fade show" id="chat-${i}" role="tabpanel" aria-labelledby="chat-tab-${i}">
+    	                            <div class="empty-screen">
+    	                                <img src="assets/images/empty-logo.png" class="img-fluid" alt="empty-logo">
+    	                                <h4 class="my-3">暂无聊天记录</h4>
+    	                            </div>
+    	                        </div>
+        					`;
+    					}
+    					
+    				}
+    				if(friendData.length == 0){
+    					str = `
+    						<a class="nav-link" data-toggle="pill" role="tab" aria-selected="false">
+		                        <div class="media" >
+		                        	<p style="text-align:center;">暂无好友</p>
+		                        </div>
+		                    </a>
+    					`;
+    				}
+    				document.getElementById('chat-list-tab').innerHTML = str;
+    				document.getElementById('chat-listContent').innerHTML = str1;
+    				setFriendInfo(img,friendData[0].userName,"在线","chat-0",friendData[0].account);
+    			},
+    			error : function(e){
+    				
+    			}
+    		});
+    	}
+    	
+    	//设置聊天框好友信息
+    	function setFriendInfo(img,name,state,id,account){
+    		sessionStorage.setItem("chartId",id);
+    		sessionStorage.setItem("friendAccount",account);
+    		var nowActiveId = sessionStorage.getItem("nowActiveId");
+    		$("#" + nowActiveId).removeClass("active");
+    		$("#" + id).addClass("active");
+    		sessionStorage.setItem("nowActiveId",id);
+    		showLocalChat(account);
+    		showOfflineMsg(account);
+    		document.getElementById('friendImg').src = img;
+			document.getElementById('friendName').innerHTML = name;
+			document.getElementById('friendState').innerHTML = state;
+    	}
+    	//搜索好友
+    	function searchAccount(){
+    		var keys = $("#add_friend_keys").val();
+    		if(keys == null || keys == ""){
+    			alert("搜索内容不能未空!");
+    			return;
+    		}
+    		$.ajax({
+    			type : "POST",//方法类型
+    			dataType : "json",//预期服务器返回的数据类型
+    			url :  getURL() + "account/searchAccount",
+    			data : {
+    				keys : keys
+    			},
+    			success : function(result) {
+    				var accounts = result.accounts;
+    				var str = "";
+    				if(accounts.length == 0){
+    					str = `<li class="media">搜索结果不存在</li>`;
+    				}else{
+    					for(var i=0;i<accounts.length;i++){
+    						var img = getImgURL() + "userImage/" + accounts[i].image;
+    						str += `
+    							<li class="media">
+	    				            <img class="align-self-center rounded-circle" src="${img}">
+	    				            <div class="media-body">
+	    				                <h5><span>${accounts[i].userName}</span></h5>
+	    				                <p>${accounts[i].account}</p>
+	    				            </div>
+	    				            <div class="custom-control custom-checkbox">
+	    				                <input type="checkbox" class="custom-control-input" name="addFriend" id="${accounts[i].account}">
+	    				                <label class="custom-control-label" for="${accounts[i].account}"></label>
+	    				            </div>
+	    				        </li>
+    						`;
+    					}
+    				}
+    				document.getElementById('add_friend_mag').innerHTML = str;
+    			},
+    			error : function(e){
+    				
+    			}
+    		});
+    	}
+    	//提交好友申请
+    	function submitAddFriend(){
+    		var accounts = getChooseI();
+    		if(accounts == null || accounts == ""){
+    			alert("没有选择用户");
+    			return;
+    		}
+    		$.ajax({
+    			type : "POST",//方法类型
+    			dataType : "json",//预期服务器返回的数据类型
+    			url :  getURL() + "msg/addMsg",
+    			data : {
+    				context : "申请消息",
+    				fromAccount : sessionStorage.getItem("account"),
+    				toAccount : accounts
+    			},
+    			success : function(result) {
+    				if(result.flag){
+    					alert("申请已提交，等待好友审核");
+    				}else if(result.type == 2){
+    					alert("申请已提交，请勿重复提交");
+    				}else if(result.type == 1){
+    					alert("您与对方已是好友");
+    				}
+    			},
+    			error : function(e){
+    				
+    			}
+    		});
+    	}
+    	//获取添加好友窗口选中选项ID
+    	function getChooseI() {
+            //首先我们要得到多选框中有一些什么样的值
+            var date = document.getElementsByName("addFriend");
+            //然后我们去得到这个多选框的长度
+            var thisLength = date.length;
+            //使用字符串数组，用于存放选择好了的数据
+            var str = "";
+            for(var i = 0;i < thisLength;i++) {
+                if (date[i].checked == true) {
+                	str = str + date[i].id + ",";
+                }
+            }
+            return str.substring(0,str.length-1);
+        }
+    	//获取申请消息窗口选中选项ID
+    	function getChoose_I() {
+            //首先我们要得到多选框中有一些什么样的值
+            var date = document.getElementsByName("add_Friend");
+            //然后我们去得到这个多选框的长度
+            var thisLength = date.length;
+            //使用字符串数组，用于存放选择好了的数据
+            var str = "";
+            for(var i = 0;i < thisLength;i++) {
+                if (date[i].checked == true) {
+                	str = str + date[i].id + ",";
+                }
+            }
+            return str.substring(0,str.length-1);
+        }
+    	//显示好友申请消息
+    	function showAddFriendMsg(){
+    		$.ajax({
+    			type : "POST",//方法类型
+    			dataType : "json",//预期服务器返回的数据类型
+    			url :  getURL() + "msg/getAddFriendMsg",
+    			data : {
+    				account : sessionStorage.getItem("account")
+    			},
+    			success : function(result) {
+    				var msgs = result.msgs;
+    				var accounts = result.accounts;
+    				var str = "";
+    				if(msgs.length == 0){
+    					str = `<li class="media">暂无消息 </li>`;
+    				}else{
+    					for(var i=0;i<msgs.length;i++){
+    						var img = getImgURL() + "userImage/" + accounts[i].image;
+    						str += `
+    							<li class="media">
+	    				            <img class="align-self-center rounded-circle" src="${img}">
+	    				            <div class="media-body">
+	    				                <h5><span>${accounts[i].userName}</span></h5>
+	    				                <p>${accounts[i].account}</p>
+	    				            </div>
+	    				            <div class="custom-control custom-checkbox">
+	    				                <input type="checkbox" class="custom-control-input" name="add_Friend" id="${accounts[i].account}">
+	    				                <label class="custom-control-label" for="${accounts[i].account}"></label>
+	    				            </div>
+	    				        </li>
+    						`;
+    					}
+    				}
+    				document.getElementById('show_add_friend_msg').innerHTML = str;
+    			},
+    			error : function(e){
+    				
+    			}
+    		});
+    	}
+    	
+    	//提交同意
+    	function submitAgree(){
+    		var accounts = getChoose_I();
+    		if(accounts == null || accounts == ""){
+    			alert("没有选择用户");
+    			return;
+    		}
+    		$.ajax({
+    			type : "POST",//方法类型
+    			dataType : "json",//预期服务器返回的数据类型
+    			url :  getURL() + "friend/addFriends",
+    			data : {
+    				myAccount : sessionStorage.getItem("account"),
+    				friendAccounts : accounts
+    			},
+    			success : function(result) {
+    				if(result.flag){
+    					alert("您与对方已成为好友");
+    				}
+    			},
+    			error : function(e){
+    				
+    			}
+    		});
+    	}
+    	//提交拒绝
+    	function submitRefuse(){
+    		var accounts = getChoose_I();
+    		if(accounts == null || accounts == ""){
+    			alert("没有选择用户");
+    			return;
+    		}
+    		$.ajax({
+    			type : "POST",//方法类型
+    			dataType : "json",//预期服务器返回的数据类型
+    			url :  getURL() + "msg/refuseFriend",
+    			data : {
+    				toAccount : sessionStorage.getItem("account"),
+    				fromAccounts : accounts
+    			},
+    			success : function(result) {
+    				if(result.flag){
+    					alert("您已拒绝与对方成为好友");
+    				}
+    			},
+    			error : function(e){
+    				
+    			}
+    		});
+    	}
+    	//离线消息
+    	function showOfflineMsg(account){
+    		$.ajax({
+    			type : "POST",//方法类型
+    			dataType : "json",//预期服务器返回的数据类型
+    			url :  getURL() + "msg/getChatMsg",
+    			data : {
+    				account : sessionStorage.getItem("account"),
+    				fromAccount : account
+    			},
+    			success : function(result) {
+    				var msgs = result.msgs;
+    				if(msgs.length > 0){
+    					for(var i=0;i<msgs.length;i++){
+    						showOfflineMsgInWeb(msgs[i].context,msgs[i].createDate);
+    						saveMsgToLocal(msg,date,1,account);
+    					}
+    				}
+    			},
+    			error : function(e){
+    				
+    			}
+    		});
+    		
+    	}
+    	function showOfflineMsgInWeb(msg,date){
+    		var count = sessionStorage.getItem("count");
+    		var msgFlag = sessionStorage.getItem("msgFlag");
+    		if( msgFlag == 0){
+    			sessionStorage.setItem("msgFlag",1);
+    			var chartId = sessionStorage.getItem("chartId");
+    			var str = `
+    			<div class="chat-message chat-message-left">
+    		        <div class="chat-message-text">
+    		            <span>${msg}</span>
+    		        </div>
+    		        <div class="chat-message-meta">
+    		            <span>${date}</span>
+    		        </div>
+    		    </div>
+    			`;
+    			document.getElementById(chartId).innerHTML = str;
+    		}else{
+    			var chartId = sessionStorage.getItem("chartId");
+    			var div = document.getElementById(chartId);
+    			var div1 = document.createElement("div");
+    			div1.setAttribute("class","chat-message chat-message-left");
+    			var id = chartId + "_" + count;
+    			count += 1;
+    			sessionStorage.setItem("count",count);
+    			div1.setAttribute("id",id);
+    			div.appendChild(div1);
+    			var str = `
+    		         <div class="chat-message-text">
+    		            <span>${msg}</span>
+    		         </div>
+    		         <div class="chat-message-meta">
+    		             <span>${date}</span>
+    		         </div>
+    			`;
+    			document.getElementById(id).innerHTML = str;
+    		}
+    		
+    	}
+    	//聊天记录显示
+    	function showLocalChat(account){
+    		var data = localMsgAnalyse(account);
+    		if(data.length > 0){
+    			for(var i=0;i<data.length;i++){
+    				if(data[i].type == 0){
+    					var chartId = sessionStorage.getItem("chartId");
+    					var msgFlag = sessionStorage.getItem("msgFlag");
+    					var count = sessionStorage.getItem("count");
+    					if(msgFlag == 0){
+    						sessionStorage.setItem("msgFlag",1);
+    						var str = `
+    							<div class="chat-message chat-message-right">
+    						        <div class="chat-message-text">
+    						            <span>${data[i].msg}</span>
+    						        </div>
+    						        <div class="chat-message-meta">
+    						            <span>${data[i].date}</span>
+    						        </div>
+    						    </div>
+    							`;
+    						document.getElementById(chartId).innerHTML = str;
+    					}else{
+    						var chartId = sessionStorage.getItem("chartId");
+    						var div = document.getElementById(chartId);
+    						var div1 = document.createElement("div");
+    						div1.setAttribute("class","chat-message chat-message-right");
+    						var id = chartId + "_" + count;
+    						count += 1;
+    						sessionStorage.setItem("count",count);
+    						div1.setAttribute("id",id);
+    						div.appendChild(div1);
+    						var str = `
+    					         <div class="chat-message-text">
+    					            <span>${data[i].msg}</span>
+    					         </div>
+    					         <div class="chat-message-meta">
+    					             <span>${data[i].date}</span>
+    					         </div>
+    						`;
+    						document.getElementById(id).innerHTML = str;
+    					}
+    				}else {
+    					var count = sessionStorage.getItem("count");
+    					var msgFlag = sessionStorage.getItem("msgFlag");
+    					if( msgFlag == 0){
+    						sessionStorage.setItem("msgFlag",1);
+    						var chartId = sessionStorage.getItem("chartId");
+    						var str = `
+    						<div class="chat-message chat-message-left">
+    					        <div class="chat-message-text">
+    					            <span>${data[i].msg}</span>
+    					        </div>
+    					        <div class="chat-message-meta">
+    					            <span>${data[i].date}</span>
+    					        </div>
+    					    </div>
+    						`;
+    						document.getElementById(chartId).innerHTML = str;
+    					}else{
+    						var chartId = sessionStorage.getItem("chartId");
+    						var div = document.getElementById(chartId);
+    						var div1 = document.createElement("div");
+    						div1.setAttribute("class","chat-message chat-message-left");
+    						var id = chartId + "_" + count;
+    						count += 1;
+    						sessionStorage.setItem("count",count);
+    						div1.setAttribute("id",id);
+    						div.appendChild(div1);
+    						var str = `
+    					         <div class="chat-message-text">
+    					            <span>${data[i].msg}</span>
+    					         </div>
+    					         <div class="chat-message-meta">
+    					             <span>${data[i].date}</span>
+    					         </div>
+    						`;
+    						document.getElementById(id).innerHTML = str;
+    					}
+    				}
+    			}
+    		}
+    	}
+    </script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>个人信息</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/cloud_icon.png" />
+<meta name="author" content="yinqi">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/materialdesignicons.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../js/jconfirm/jquery-confirm.min.css">
+<link rel="stylesheet" href="../js/jconfirm/jquery-confirm.min.css">
+<link href="../css/style.min.css" rel="stylesheet">
+</head>
+  
+<body>
+<div class="lyear-layout-web">
+  <div class="lyear-layout-container">
+    <!--左侧导航-->
+    <aside class="lyear-layout-sidebar">
+       
+      <!-- logo -->
+      <div id="logo" class="sidebar-header">
+        <a href="index.html"><img src="../images/LStorage.png" title="LightYear" alt="LightYear" /></a>
+      </div>
+      <div class="lyear-layout-sidebar-scroll">
+        
+        <nav class="sidebar-main">
+          <ul class="nav nav-drawer">
+            <li class="nav-item active"> <a href="index.html"><i class="mdi mdi-home"></i> 我的文件</a> </li>
+        	<li class="nav-item active"> <a href="share.html"><i class="mdi mdi-near-me"></i> 共享文件</a> </li>
+        	<li class="nav-item active"> <a href="secure.html"><i class="mdi mdi-lock-plus"></i> 加密空间</a> </li>
+        	<li class="nav-item active"> <a href="statistics.html"><i class="mdi mdi-chart-areaspline"></i> 统计信息</a> </li>
+          	<li class="nav-item nav-item-has-subnav">
+          		<a href="javascript:void(0)"><i class="mdi mdi-format-align-justify"></i> 后台管理</a>
+          		<ul class="nav nav-subnav">
+          			<li> <a href="account_manage.html">账号管理</a> </li>
+          			<li> <a href="admin_statistics.html">流量统计</a> </li>
+          			<li> <a href="admin_log.html">日志信息</a> </li>
+          		</ul>
+          	</li>
+          </ul>
+        </nav>
+      </div>
+      
+    </aside>
+    <!--End 左侧导航-->
+    
+    <!--头部信息-->
+    <header class="lyear-layout-header">
+      
+      <nav class="navbar navbar-default">
+        <div class="topbar">
+          
+          <div class="topbar-left">
+            <div class="lyear-aside-toggler">
+              <span class="lyear-toggler-bar"></span>
+              <span class="lyear-toggler-bar"></span>
+              <span class="lyear-toggler-bar"></span>
+            </div>
+            <span class="navbar-page-title"> 个人信息 </span>
+          </div>
+          
+          <ul class="topbar-right">
+            <li class="dropdown dropdown-profile">
+              <a href="javascript:void(0)" data-toggle="dropdown">
+                 <img id="showImage" class="img-avatar img-avatar-48 m-r-10"  src="" />
+                <span id="showName"> <span class="caret"></span></span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li> <a href="person.html"><i class="mdi mdi-account"></i> 个人信息</a> </li>
+                <li> <a href="edit_password.html"><i class="mdi mdi-lock-outline"></i> 修改密码</a> </li>
+                <li> <a href="chat.html"><i class="mdi mdi-account"></i> 我的好友</a> </li>
+                <li class="divider"></li>
+                <li> <a href="javascript:void(0)" onclick="logout()"><i class="mdi mdi-logout-variant"></i> 退出登录</a> </li>
+              </ul>
+            </li>
+            <!--切换主题配色-->
+		    <li class="dropdown dropdown-skin">
+			  <span data-toggle="dropdown" class="icon-palette"><i class="mdi mdi-palette"></i></span>
+			  <ul class="dropdown-menu dropdown-menu-right" data-stopPropagation="true">
+                <li class="drop-title"><p>主题</p></li>
+                <li class="drop-skin-li clearfix">
+                  <span class="inverse">
+                    <input type="radio" name="site_theme" value="default" id="site_theme_1" checked>
+                    <label for="site_theme_1"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="site_theme" value="dark" id="site_theme_2">
+                    <label for="site_theme_2"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="site_theme" value="translucent" id="site_theme_3">
+                    <label for="site_theme_3"></label>
+                  </span>
+                </li>
+			    <li class="drop-title"><p>LOGO</p></li>
+				<li class="drop-skin-li clearfix">
+                  <span class="inverse">
+                    <input type="radio" name="logo_bg" value="default" id="logo_bg_1" checked>
+                    <label for="logo_bg_1"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="logo_bg" value="color_2" id="logo_bg_2">
+                    <label for="logo_bg_2"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="logo_bg" value="color_3" id="logo_bg_3">
+                    <label for="logo_bg_3"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="logo_bg" value="color_4" id="logo_bg_4">
+                    <label for="logo_bg_4"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="logo_bg" value="color_5" id="logo_bg_5">
+                    <label for="logo_bg_5"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="logo_bg" value="color_6" id="logo_bg_6">
+                    <label for="logo_bg_6"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="logo_bg" value="color_7" id="logo_bg_7">
+                    <label for="logo_bg_7"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="logo_bg" value="color_8" id="logo_bg_8">
+                    <label for="logo_bg_8"></label>
+                  </span>
+				</li>
+				<li class="drop-title"><p>头部</p></li>
+				<li class="drop-skin-li clearfix">
+                  <span class="inverse">
+                    <input type="radio" name="header_bg" value="default" id="header_bg_1" checked>
+                    <label for="header_bg_1"></label>                      
+                  </span>                                                    
+                  <span>                                                     
+                    <input type="radio" name="header_bg" value="color_2" id="header_bg_2">
+                    <label for="header_bg_2"></label>                      
+                  </span>                                                    
+                  <span>                                                     
+                    <input type="radio" name="header_bg" value="color_3" id="header_bg_3">
+                    <label for="header_bg_3"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="header_bg" value="color_4" id="header_bg_4">
+                    <label for="header_bg_4"></label>                      
+                  </span>                                                    
+                  <span>                                                     
+                    <input type="radio" name="header_bg" value="color_5" id="header_bg_5">
+                    <label for="header_bg_5"></label>                      
+                  </span>                                                    
+                  <span>                                                     
+                    <input type="radio" name="header_bg" value="color_6" id="header_bg_6">
+                    <label for="header_bg_6"></label>                      
+                  </span>                                                    
+                  <span>                                                     
+                    <input type="radio" name="header_bg" value="color_7" id="header_bg_7">
+                    <label for="header_bg_7"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="header_bg" value="color_8" id="header_bg_8">
+                    <label for="header_bg_8"></label>
+                  </span>
+				</li>
+				<li class="drop-title"><p>侧边栏</p></li>
+				<li class="drop-skin-li clearfix">
+                  <span class="inverse">
+                    <input type="radio" name="sidebar_bg" value="default" id="sidebar_bg_1" checked>
+                    <label for="sidebar_bg_1"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="sidebar_bg" value="color_2" id="sidebar_bg_2">
+                    <label for="sidebar_bg_2"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="sidebar_bg" value="color_3" id="sidebar_bg_3">
+                    <label for="sidebar_bg_3"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="sidebar_bg" value="color_4" id="sidebar_bg_4">
+                    <label for="sidebar_bg_4"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="sidebar_bg" value="color_5" id="sidebar_bg_5">
+                    <label for="sidebar_bg_5"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="sidebar_bg" value="color_6" id="sidebar_bg_6">
+                    <label for="sidebar_bg_6"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="sidebar_bg" value="color_7" id="sidebar_bg_7">
+                    <label for="sidebar_bg_7"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="sidebar_bg" value="color_8" id="sidebar_bg_8">
+                    <label for="sidebar_bg_8"></label>
+                  </span>
+				</li>
+			  </ul>
+			</li>
+            <!--切换主题配色-->
+          </ul>
+          
+        </div>
+      </nav>
+      
+    </header>
+    <!--End 头部信息-->
+    
+    <!--页面主要内容-->
+    <main class="lyear-layout-content">
+      
+      <div class="container-fluid">
+        
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                
+                <div class="edit-avatar">
+                  <img id="myImage" src="" class="img-avatar">
+                  <div class="avatar-divider"></div>
+                  <div class="edit-avatar-content">
+                  <form class="btn btn-default" id="userImage" enctype="multipart/form-data" method="POST" action="return false">
+                    <input type="file" id="image" name="image" value="修改头像">
+                  </form>
+                    <p class="m-0">选择一张你喜欢的图片，裁剪后会自动生成264x264大小，上传图片大小不能超过2M。</p>
+                  </div>
+                </div>
+                <hr>
+                <div class="site-form">
+                  <div class="form-group">
+                    <label for="username">账号</label>
+                    <input type="text" class="form-control" name="username" id="account" value="" disabled="disabled" />
+                  </div>
+                  <div class="form-group">
+                    <label for="nickname">用户名</label>
+                    <input type="text" class="form-control" name="nickname" id="userName" placeholder="输入您的昵称" value="">
+                  </div>
+                  <div class="form-group">
+                    <label for="remark">简介</label>
+                    <textarea class="form-control" name="remark" id="remark" rows="3"></textarea>
+                  </div>
+                  <button type="button" class="btn btn-primary" onclick="submitSave()">保存</button>
+                </div>
+       
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </main>
+    <!--End 页面主要内容-->
+  </div>
+</div>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/perfect-scrollbar.min.js"></script>
+<script src="../js/jconfirm/jquery-confirm.min.js"></script>
+<script type="text/javascript" src="../js/JavaScript_util.js"></script>
+<script type="text/javascript" src="../js/main.min.js"></script>
+<script type="text/javascript">
+	showMyInfo();
+	showDetailInfo();
+	//显示出个人信息
+	function showDetailInfo(){
+		document.getElementById('myImage').src = getImgURL() + "userImage/" + sessionStorage.getItem("image");
+		document.getElementById('account').value = sessionStorage.getItem("account");
+		document.getElementById('userName').value = sessionStorage.getItem("userName");
+		document.getElementById('remark').value = sessionStorage.getItem("remark");
+	}
+	//保存按钮响应
+	function submitSave(){
+		var str = document.getElementById("image").value;
+		str = str.substring(str.lastIndexOf(".")+1,str.length);
+		if(str == "png" || str == "jpg" || str == "jpeg" || str == "gif" ||str == "PNG" || str == "JPG" || str == "JPEG" || str == "GIF" || str == null || str == ""){
+			var data = new FormData($("#userImage")[0]);
+			var type = 0;
+			if(str == null || str == ""){
+				type = 1;
+			}
+			var userName = $("#userName").val();
+			var remark = $("#remark").val();
+			$.ajax({ 
+	    		type : 'POST',  
+	    		async : false,
+			    url : getURL() + "account/modifiyAccount?account="+sessionStorage.getItem("account")+"&userName="+userName+"&remark="+remark+"&type="+type,
+			    cache : false,   //上传文件不需缓存
+			    processData : false, //需设置为false。因为data值是FormData对象，不需要对数据做处理
+			    contentType : false, //需设置为false。因为是FormData对象，且已经声明了属性enctype="multipart/form-data"
+			    data : data,  
+			    dataType : 'json', 
+			    success : function(result){
+					if(result.flag){
+						alert("修改成功");
+						if(result.image != null && result.image != ""){
+							sessionStorage.setItem("image",result.image);
+						}
+						sessionStorage.setItem("userName",result.userName);
+						sessionStorage.setItem("remark",result.remark);
+						showMyInfo();
+						showDetailInfo();
+					}
+			     },
+			     error : function(){ 
+			      	alert("请求失败")
+			     }
+			 });
+		}else{
+			alert("请选择png、jpg、jpeg或gif格式文件!");
+			return;
+		}
+	}
+</script>
+</body>
+</html>

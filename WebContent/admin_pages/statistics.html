@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>统计信息</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/cloud_icon.png" />
+<meta name="author" content="yinqi">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/materialdesignicons.min.css" rel="stylesheet">
+<link href="../css/style.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../js/jconfirm/jquery-confirm.min.css">
+<link rel="stylesheet" href="../js/bootstrap-datepicker/bootstrap-datepicker3.min.css">
+</head>
+  
+<body>
+<div class="lyear-layout-web">
+  <div class="lyear-layout-container">
+    <!--左侧导航-->
+    <aside class="lyear-layout-sidebar">
+      
+      <!-- logo -->
+      <div id="logo" class="sidebar-header">
+        <a href="index.html"><img src="../images/LStorage.png" title="LightYear" alt="LightYear" /></a>
+      </div>
+      <div class="lyear-layout-sidebar-scroll"> 
+        
+        <nav class="sidebar-main">
+          <ul class="nav nav-drawer">
+            <li class="nav-item active"> <a href="index.html"><i class="mdi mdi-home"></i> 我的文件</a> </li>
+        	<li class="nav-item active"> <a href="share.html"><i class="mdi mdi-near-me"></i> 共享文件</a> </li>
+        	<li class="nav-item active"> <a href="secure.html"><i class="mdi mdi-lock-plus"></i> 加密空间</a> </li>
+        	<li class="nav-item active"> <a href="statistics.html"><i class="mdi mdi-chart-areaspline"></i> 统计信息</a> </li>
+          	<li class="nav-item nav-item-has-subnav">
+          		<a href="javascript:void(0)"><i class="mdi mdi-format-align-justify"></i> 后台管理</a>
+          		<ul class="nav nav-subnav">
+          			<li> <a href="account_manage.html">账号管理</a> </li>
+          			<li> <a href="admin_statistics.html">流量统计</a> </li>
+          			<li> <a href="admin_log.html">日志信息</a> </li>
+          		</ul>
+          	</li>
+          </ul>
+        </nav>
+        
+      </div>
+      
+    </aside>
+    <!--End 左侧导航-->
+    
+    <!--头部信息-->
+    <header class="lyear-layout-header">
+      
+      <nav class="navbar navbar-default">
+        <div class="topbar">
+          
+          <div class="topbar-left">
+            <div class="lyear-aside-toggler">
+              <span class="lyear-toggler-bar"></span>
+              <span class="lyear-toggler-bar"></span>
+              <span class="lyear-toggler-bar"></span>
+            </div>
+            <span class="navbar-page-title"> 统计信息 </span>
+          </div>
+          
+          <ul class="topbar-right">
+            <li class="dropdown dropdown-profile">
+              <a href="javascript:void(0)" data-toggle="dropdown">
+                 <img id="showImage" class="img-avatar img-avatar-48 m-r-10"  src="" />
+                <span id="showName"> <span class="caret"></span></span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li> <a href="person.html"><i class="mdi mdi-account"></i> 个人信息</a> </li>
+                <li> <a href="edit_password.html"><i class="mdi mdi-lock-outline"></i> 修改密码</a> </li>
+                <li> <a href="chat.html"><i class="mdi mdi-account"></i> 我的好友</a> </li>
+                <li class="divider"></li>
+                <li> <a href="javascript:void(0)" onclick="logout()"><i class="mdi mdi-logout-variant"></i> 退出登录</a> </li>
+              </ul>
+            </li>
+            <!--切换主题配色-->
+		    <li class="dropdown dropdown-skin">
+			  <span data-toggle="dropdown" class="icon-palette"><i class="mdi mdi-palette"></i></span>
+			  <ul class="dropdown-menu dropdown-menu-right" data-stopPropagation="true">
+                <li class="drop-title"><p>主题</p></li>
+                <li class="drop-skin-li clearfix">
+                  <span class="inverse">
+                    <input type="radio" name="site_theme" value="default" id="site_theme_1" checked>
+                    <label for="site_theme_1"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="site_theme" value="dark" id="site_theme_2">
+                    <label for="site_theme_2"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="site_theme" value="translucent" id="site_theme_3">
+                    <label for="site_theme_3"></label>
+                  </span>
+                </li>
+			    <li class="drop-title"><p>LOGO</p></li>
+				<li class="drop-skin-li clearfix">
+                  <span class="inverse">
+                    <input type="radio" name="logo_bg" value="default" id="logo_bg_1" checked>
+                    <label for="logo_bg_1"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="logo_bg" value="color_2" id="logo_bg_2">
+                    <label for="logo_bg_2"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="logo_bg" value="color_3" id="logo_bg_3">
+                    <label for="logo_bg_3"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="logo_bg" value="color_4" id="logo_bg_4">
+                    <label for="logo_bg_4"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="logo_bg" value="color_5" id="logo_bg_5">
+                    <label for="logo_bg_5"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="logo_bg" value="color_6" id="logo_bg_6">
+                    <label for="logo_bg_6"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="logo_bg" value="color_7" id="logo_bg_7">
+                    <label for="logo_bg_7"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="logo_bg" value="color_8" id="logo_bg_8">
+                    <label for="logo_bg_8"></label>
+                  </span>
+				</li>
+				<li class="drop-title"><p>头部</p></li>
+				<li class="drop-skin-li clearfix">
+                  <span class="inverse">
+                    <input type="radio" name="header_bg" value="default" id="header_bg_1" checked>
+                    <label for="header_bg_1"></label>                      
+                  </span>                                                    
+                  <span>                                                     
+                    <input type="radio" name="header_bg" value="color_2" id="header_bg_2">
+                    <label for="header_bg_2"></label>                      
+                  </span>                                                    
+                  <span>                                                     
+                    <input type="radio" name="header_bg" value="color_3" id="header_bg_3">
+                    <label for="header_bg_3"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="header_bg" value="color_4" id="header_bg_4">
+                    <label for="header_bg_4"></label>                      
+                  </span>                                                    
+                  <span>                                                     
+                    <input type="radio" name="header_bg" value="color_5" id="header_bg_5">
+                    <label for="header_bg_5"></label>                      
+                  </span>                                                    
+                  <span>                                                     
+                    <input type="radio" name="header_bg" value="color_6" id="header_bg_6">
+                    <label for="header_bg_6"></label>                      
+                  </span>                                                    
+                  <span>                                                     
+                    <input type="radio" name="header_bg" value="color_7" id="header_bg_7">
+                    <label for="header_bg_7"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="header_bg" value="color_8" id="header_bg_8">
+                    <label for="header_bg_8"></label>
+                  </span>
+				</li>
+				<li class="drop-title"><p>侧边栏</p></li>
+				<li class="drop-skin-li clearfix">
+                  <span class="inverse">
+                    <input type="radio" name="sidebar_bg" value="default" id="sidebar_bg_1" checked>
+                    <label for="sidebar_bg_1"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="sidebar_bg" value="color_2" id="sidebar_bg_2">
+                    <label for="sidebar_bg_2"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="sidebar_bg" value="color_3" id="sidebar_bg_3">
+                    <label for="sidebar_bg_3"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="sidebar_bg" value="color_4" id="sidebar_bg_4">
+                    <label for="sidebar_bg_4"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="sidebar_bg" value="color_5" id="sidebar_bg_5">
+                    <label for="sidebar_bg_5"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="sidebar_bg" value="color_6" id="sidebar_bg_6">
+                    <label for="sidebar_bg_6"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="sidebar_bg" value="color_7" id="sidebar_bg_7">
+                    <label for="sidebar_bg_7"></label>
+                  </span>
+                  <span>
+                    <input type="radio" name="sidebar_bg" value="color_8" id="sidebar_bg_8">
+                    <label for="sidebar_bg_8"></label>
+                  </span>
+				</li>
+			  </ul>
+			</li>
+            <!--切换主题配色-->
+          </ul>
+          
+        </div>
+      </nav>
+      
+    </header>
+    <!--End 头部信息-->
+    
+    <!--页面主要内容-->
+    <main class="lyear-layout-content">
+      
+      <div class="container-fluid">
+        <div class="row">
+        
+          <div class="col-sm-6 col-lg-3">
+            <div class="card bg-primary">
+              <div class="card-body clearfix">
+                <div class="pull-right">
+                  <p class="h6 text-white m-t-0">今日上传量</p>
+                  <p class="h3 text-white m-b-0" id="todayUp"></p>
+                </div>
+                <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-arrow-up-bold fa-1-5x"></i></span> </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-sm-6 col-lg-3">
+            <div class="card bg-success">
+              <div class="card-body clearfix">
+                <div class="pull-right">
+                  <p class="h6 text-white m-t-0">今日下载量</p>
+                  <p class="h3 text-white m-b-0" id="todayDown"></p>
+                </div>
+                <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-arrow-down-bold fa-1-5x"></i></span> </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-sm-6 col-lg-3">
+            <div class="card bg-danger">
+              <div class="card-body clearfix">
+                <div class="pull-right">
+                  <p class="h6 text-white m-t-0">空间使用量</p>
+                  <p class="h3 text-white m-b-0" id="totalSize"></p>
+                </div>
+                <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-folder-multiple fa-1-5x"></i></span> </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-sm-6 col-lg-3">
+            <div class="card bg-purple">
+              <div class="card-body clearfix">
+                <div class="pull-right">
+                  <p class="h6 text-white m-t-0">今日文件共享量</p>
+                  <p class="h3 text-white m-b-0" id="shareNumber"></p>
+                </div>
+                <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-near-me fa-1-5x"></i></span> </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          
+          <div class="col-lg-6"> 
+            <div class="card">
+              <div class="card-header">
+                <h4>近7日上传下载量</h4>
+              </div>
+              <div class="card-body">
+                <canvas id="chart-vbar-2" width="400" height="250"></canvas>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-6"> 
+            <div class="card">
+              <div class="card-header">
+                <h4>近30日上传下载量</h4>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input style="width:20%;height:25px;" class="form-control js-datepicker" data-date-format="yyyy-mm-dd" type="text" id="startDate" name="example-daterange1" placeholder="开始时间">
+                <input style="width:20%;height:25px;" class="form-control js-datepicker" data-date-format="yyyy-mm-dd" type="text" id="stopDate" name="example-daterange2" placeholder="截止时间">
+                <button onclick="refreshChart()" style="width:20%;height:25px;line-height:10px;" class="btn btn-primary"><i class="mdi mdi-restart"></i>刷新</button>
+              </div>
+              <div class="card-body">
+                 <canvas id="chart-line-2" width="400" height="250"></canvas>
+              </div>
+            </div>
+          </div>
+           
+        </div>
+        
+        <div class="row">
+          
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4>日志信息</h4>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                             时间范围：
+                <input style="width:10%;" class="form-control js-datepicker btn btn-default dropdown-toggle" data-date-format="yyyy-mm-dd" type="text" id="l_startDate" name="example-daterange1" placeholder="开始时间">
+                <input style="width:10%;" class="form-control js-datepicker btn btn-default dropdown-toggle" data-date-format="yyyy-mm-dd" type="text" id="l_stopDate" name="example-daterange2" placeholder="截至时间">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                             类型：
+                <select class="btn btn-default dropdown-toggle" style="width:10%;" id="l_type">
+                  <option value ="t_all">全部</option>
+				  <option value ="登录">登录</option>
+				  <option value="注册">注册</option>
+				  <option value ="上传">上传</option>
+				  <option value="下载">下载</option>
+				  <option value ="新建">新建</option>
+				  <option value="分享">分享</option>
+				  <option value ="修改">修改</option>
+				  <option value="删除">删除</option>
+                </select>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            操作设备：
+                <select class="btn btn-default dropdown-toggle" style="width:10%;" id="l_source">
+                  <option value ="s_all">全部</option>
+				  <option value ="移动端">移动端</option>
+				  <option value="PC端">PC端</option>
+                </select>
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button onclick="refreshLogData(1)" style="width:10%;" class="btn btn-primary"><i class="mdi mdi-restart"></i>刷新</button>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-hover" >
+                    <thead >
+                      <tr>
+                        <th style="text-align:center;">#</th>
+                        <th style="text-align:center;">内容</th>
+                        <th style="text-align:center;">类型</th>
+                        <th style="text-align:center;">操作时间</th>
+                        <th style="text-align:center;">操作设备</th>
+                        <th style="text-align:center;">删除</th>
+                      </tr>
+                    </thead>
+                    <tbody id="logs" style="text-align:center;">
+                     <!--  <tr>
+                        <td>1</td>
+                        <td>安徽合肥登录</td>
+                        <td>登录</td>
+                        <td>2020-02-02 15:59:46.0</td>
+                        <td>移动端</td>
+                        <td>
+                          <div class="btn-group">
+                            <a class="btn btn-xs btn-default" href="#!" title="删除" data-toggle="tooltip"><i class="mdi mdi-window-close"></i></a>
+                          </div>
+                        </td>
+                      </tr> -->
+                    </tbody>
+                  </table>
+                </div>
+                <!-- 分页 -->
+                <ul class="pagination" id="pages">
+                  <!-- <li class="disabled"><span>«</span></li>
+                  <li class="active"><span>1</span></li>
+                  <li><a href="#1">2</a></li>
+                  <li><a href="#1">3</a></li>
+                  <li><a href="#1">4</a></li>
+                  <li><a href="#1">5</a></li>
+                  <li><a href="#1">6</a></li>
+                  <li><a href="#1">7</a></li>
+                  <li><a href="#1">8</a></li>
+                  <li class="disabled"><span>...</span></li>
+                  <li><a href="#!">14452</a></li>
+                  <li><a href="#!">14453</a></li>
+                  <li><a href="#!">»</a></li> -->
+                </ul>
+				<!-- END 分页 -->
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </main>
+    <!--End 页面主要内容-->
+  </div>
+</div>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/perfect-scrollbar.min.js"></script>
+<script src="../js/jconfirm/jquery-confirm.min.js"></script>
+<script type="text/javascript" src="../js/JavaScript_util.js"></script>
+<script src="../js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="../js/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+<script type="text/javascript" src="../js/main.min.js"></script>
+
+<!--图表插件-->
+<script type="text/javascript" src="../js/Chart.js"></script>
+<script type="text/javascript">
+showMyInfo();
+showCharts();
+getLog(1);
+getPages();
+//获取日志
+function getLog(index){
+	$.ajax({
+		type : "POST",//方法类型
+		dataType : "json",//预期服务器返回的数据类型
+		url :  getURL() + "log/getLog",
+		data : {
+			account : sessionStorage.getItem("account"),
+			index : index
+		},
+		success : function(result) {
+			var logs = result.logs;
+			var str = "";
+			var id = (index - 1) * 10 + 1;
+			for(var i = 0; i < logs.length; i++){
+				str += ` 
+					 <tr>
+	                    <td>${id}</td>
+	                    <td>${logs[i].context}</td>
+	                    <td>${logs[i].type}</td>
+	                    <td>${logs[i].createDate}</td>
+	                    <td>${logs[i].source}</td>
+	                    <td>
+	                      <div class="btn-group">
+	                        <a class="btn btn-xs btn-default" onclick="delLog(${logs[i].id})" style="cursor:pointer;" title="删除" data-toggle="tooltip"><i class="mdi mdi-window-close"></i></a>
+	                      </div>
+	                    </td>
+	                  </tr>
+				`;
+				id++;
+			}
+			document.getElementById('logs').innerHTML = str;
+		},
+		error : function(e){
+			
+		}
+	});
+}
+//删除日志
+function delLog(id){
+	var flag = isDelete();
+	if(!flag){
+		return;
+	}
+	$.ajax({
+		type : "POST",//方法类型
+		dataType : "json",//预期服务器返回的数据类型
+		url :  getURL() + "log/delLog",
+		data : {
+			id : id
+		},
+		success : function(result) {
+			if(result){
+				alert("删除成功");
+			}else{
+				alert("删除失败");
+			}
+			getLog(1);
+		},
+		error : function(e){
+			
+		}
+	});
+}
+//显示分页
+function getPages(){
+	$.ajax({
+		type : "POST",//方法类型
+		dataType : "json",//预期服务器返回的数据类型
+		url :  getURL() + "log/getLog",
+		data : {
+			account : sessionStorage.getItem("account"),
+			index : 1
+		},
+		success : function(result) {
+			var pages = result.pages;
+			if(pages != 0){
+				oldId = 1;
+				var str = "";
+				str += `<li onclick="changePages(1)" style="cursor:pointer;"><span>«</span></li>`;
+				str += ` 
+					<li class="active" id="1" onclick="changePages(1)" style="cursor:pointer;"><span>1</span></li>
+				`;
+				for(var i = 1; i < pages; i++){
+					str += ` 
+						<li id="${i+1}" style="cursor:pointer;"><a onclick="changePages(${i+1})">${i+1}</a></li>
+					`;
+				}
+				str += ` <li><a onclick="changePages(${pages})" style="cursor:pointer;">»</a></li>`;
+				document.getElementById('pages').innerHTML = str;
+			}
+		},
+		error : function(e){
+			
+		}
+	});
+}
+//条件查询日志
+function refreshLogData(index){
+	var startDate = $("#l_startDate").val();
+	var stopDate = $("#l_stopDate").val();
+	var type = $("#l_type").val();
+	var source = $("#l_source").val();
+	if(startDate > stopDate){
+		alert("截止时间不能在开始时间之前！");
+		return;
+	}
+	getLogs(index,startDate,stopDate,type,source);
+	getPages1();
+}
+//分页
+function getPages1(){
+	var startDate = $("#l_startDate").val();
+	var stopDate = $("#l_stopDate").val();
+	var type = $("#l_type").val();
+	var source = $("#l_source").val();
+	$.ajax({
+		type : "POST",//方法类型
+		dataType : "json",//预期服务器返回的数据类型
+		url :  getURL() + "log/getLogs",
+		data : {
+			account : sessionStorage.getItem("account"),
+			index : 1,
+			startDate : startDate,
+			stopDate : stopDate,
+			type : type,
+			source : source
+		},
+		success : function(result) {
+			var pages = result.pages;
+			if(pages != 0){
+				oldId = 1;
+				var str = "";
+				str += `<li onclick="changePages1(1)" style="cursor:pointer;"><span>«</span></li>`;
+				str += ` 
+					<li class="active" id="1" onclick="changePages1(1)" style="cursor:pointer;"><span>1</span></li>
+				`;
+				for(var i = 1; i < pages; i++){
+					str += ` 
+						<li id="${i+1}" style="cursor:pointer;"><a onclick="changePages1(${i+1})">${i+1}</a></li>
+					`;
+				}
+				str += ` <li><a onclick="changePages1(${pages})" style="cursor:pointer;">»</a></li>`;
+				document.getElementById('pages').innerHTML = str;
+			}
+		},
+		error : function(e){
+			
+		}
+	});
+}
+function getLogs(index,startDate,stopDate,type,source){
+	$.ajax({
+		type : "POST",//方法类型
+		dataType : "json",//预期服务器返回的数据类型
+		url :  getURL() + "log/getLogs",
+		data : {
+			account : sessionStorage.getItem("account"),
+			index : index,
+			startDate : startDate,
+			stopDate : stopDate,
+			type : type,
+			source : source
+		},
+		success : function(result) {
+			var logs = result.logs;
+			var str = "";
+			var id = (index - 1) * 10 + 1;
+			for(var i = 0; i < logs.length; i++){
+				str += ` 
+					 <tr>
+	                    <td>${id}</td>
+	                    <td>${logs[i].context}</td>
+	                    <td>${logs[i].type}</td>
+	                    <td>${logs[i].createDate}</td>
+	                    <td>${logs[i].source}</td>
+	                    <td>
+	                      <div class="btn-group">
+	                        <a class="btn btn-xs btn-default" onclick="delLog(${logs[i].id})" style="cursor:pointer;" title="删除" data-toggle="tooltip"><i class="mdi mdi-window-close"></i></a>
+	                      </div>
+	                    </td>
+	                  </tr>
+				`;
+				id++;
+			}
+			document.getElementById('logs').innerHTML = str;
+		},
+		error : function(e){
+			
+		}
+	});
+}
+//分页切换
+function changePages(index){
+	$('#'+oldId).removeClass('active');
+	$('#'+index).addClass('active');
+	oldId = index;
+	getLog(index);
+}
+//分页切换1
+function changePages1(index){
+	$('#'+oldId).removeClass('active');
+	$('#'+index).addClass('active');
+	oldId = index;
+	var startDate = $("#l_startDate").val();
+	var stopDate = $("#l_stopDate").val();
+	var type = $("#l_type").val();
+	var source = $("#l_source").val();
+	if(startDate > stopDate){
+		alert("截止时间不能在开始时间之前！");
+		return;
+	}
+	getLogs(index,startDate,stopDate,type,source);
+}
+//刷新chart
+function refreshChart(){
+	var startDate = $("#startDate").val();
+	var stopDate = $("#stopDate").val();
+	if(startDate == null || startDate == ""){
+		alert("请选择开始日期!");
+		return;
+	}
+	if(stopDate == null || stopDate == ""){
+		alert("请选择截至日期!");
+		return;
+	}
+	if(startDate > stopDate){
+		alert("截至日期不能再开始日期之前！");
+		return;
+	}else{
+		$.ajax({
+			type : "POST",//方法类型
+			dataType : "json",//预期服务器返回的数据类型
+			url :  getURL() + "fileSize/getChartDataForDate",
+			data : {
+				account : sessionStorage.getItem("account"),
+				startDate : startDate,
+				stopDate : stopDate
+			},
+			success : function(result) {
+				var c = document.getElementById("chart-line-2"); 
+				var cxt = document.getElementById("chart-line-2").getContext("2d");
+			    cxt.clearRect(0,0,c.width,c.height);  
+				monthChart(result.monthX,result.monthY1,result.monthY2);
+			},
+			error : function(e){
+				
+			}
+		});
+	}
+}
+
+//显示Charts
+function showCharts(){
+	$.ajax({
+		type : "POST",//方法类型
+		dataType : "json",//预期服务器返回的数据类型
+		url :  getURL() + "fileSize/getChartData",
+		data : {
+			account : sessionStorage.getItem("account")
+		},
+		success : function(result) {
+			var todayData = result.todayData;
+			var weekData = result.weekData;
+			var monthData = result.monthData;
+			document.getElementById('todayUp').innerHTML = changeUnit(todayData.uploadSize);
+			document.getElementById('todayDown').innerHTML = changeUnit(todayData.downloadSize);
+			document.getElementById('totalSize').innerHTML = changeUnit(todayData.totalSize) + "/10GB";
+			document.getElementById('shareNumber').innerHTML = todayData.shareNumber + "个";
+			weekChart(weekData.weekX,weekData.weekY1,weekData.weekY2);
+			monthChart(monthData.monthX,monthData.monthY1,monthData.monthY2);
+		},
+		error : function(e){
+			
+		}
+	});
+}
+//周记录Chart
+function weekChart(X,Y1,Y2){
+	new Chart($("#chart-vbar-2"), {
+	    type: 'bar',
+	    data: {
+	        labels: X,
+	        datasets: [{
+	            label: "上传",
+	            backgroundColor: "rgba(51,202,185,0.5)",
+	            borderColor: "rgba(0,0,0,0)",
+	            hoverBackgroundColor: "rgba(51,202,185,0.7)",
+	            hoverBorderColor: "rgba(0,0,0,0)",
+	            data: Y1
+	        },
+	        {
+	            label: "下载",
+	            backgroundColor: "rgba(255,99,132,0.8)",
+	            borderColor: "rgba(0,0,0,0)",
+	            hoverBackgroundColor: "rgba(255,99,132,1)",
+	            hoverBorderColor: "rgba(0,0,0,0)",
+	            data: Y2
+	        }]
+	    },
+	    options: {
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero: true
+	                }
+	            }]
+	        }
+	    }
+	});
+}
+
+//月记录Chart
+function monthChart(X,Y1,Y2){
+	new Chart($("#chart-line-2"), {
+	    type: 'line',
+	    data: {
+	        labels: X,
+	        datasets: [{
+	            label: "上传",
+	            fill: false,
+	            borderWidth: 3,
+	            pointRadius: 4,
+	            borderColor: "#36a2eb",
+	            backgroundColor: "#36a2eb",
+	            pointBackgroundColor: "#36a2eb",
+	            pointBorderColor: "#36a2eb",
+	            pointHoverBackgroundColor: "#fff",
+	            pointHoverBorderColor: "#36a2eb",
+	            data: Y1
+	        },
+	        {
+	            label: "下载",
+	            fill: false,
+	            borderWidth: 3,
+	            pointRadius: 4,
+	            borderColor: "#ff6384",
+	            backgroundColor: "#ff6384",
+	            pointBackgroundColor: "#ff6384",
+	            pointBorderColor: "#ff6384",
+	            pointHoverBackgroundColor: "#fff",
+	            pointHoverBorderColor: "#ff6384",
+	            data: Y2
+	        }]
+	    },
+	    options: {}
+	});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>登录页面</title>
+<link rel="shortcut icon" type="image/x-icon" href="images/cloud_icon.png" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="yinqi">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="css/style.min.css" rel="stylesheet">
+<link rel="stylesheet" href="js/jconfirm/jquery-confirm.min.css">
+
+<script type="text/javascript" src="js/JavaScript_util.js"></script>
+<script type="text/javascript">
+	setURL("");
+</script>
+<style>
+.lyear-wrapper {
+    position: relative;
+}
+.lyear-login {
+    display: flex !important;
+    min-height: 100vh;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.login-center {
+    background: #fff;
+    min-width: 29.25rem;
+    padding: 2.14286em 3.57143em;
+    border-radius: 5px;
+    margin: 2.85714em;
+}
+.login-header {
+    margin-bottom: 1.5rem !important;
+}
+.login-center .has-feedback.feedback-left .form-control {
+    padding-left: 38px;
+    padding-right: 12px;
+}
+.login-center .has-feedback.feedback-left .form-control-feedback {
+    left: 0;
+    right: auto;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    z-index: 4;
+    color: #dcdcdc;
+}
+.login-center .has-feedback.feedback-left.row .form-control-feedback {
+    left: 15px;
+}
+</style>
+</head>
+  
+<body>
+<div class="row lyear-wrapper">
+  <div class="lyear-login">
+    <div class="login-center">
+      <div class="login-header text-center">
+        <a href="index.html"> <img alt="light year admin" src="images/LStorage.png"> </a>
+      </div>
+      <!-- 登录 -->
+      <div id="loginDiv">
+        <div class="form-group has-feedback feedback-left">
+          <input type="text" placeholder="请输入用户名" class="form-control" name="username" id="account" />
+          <span class="mdi mdi-account form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="form-group has-feedback feedback-left">
+          <input type="password" placeholder="请输入密码" class="form-control" id="password" name="password" />
+          <span class="mdi mdi-lock form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-block btn-primary" type="button" onclick="submitLogin()">立即登录</button>
+        </div>
+		<div class="form-group">
+		  <button class="btn btn-block btn-primary" type="button" onclick="openDiv(1)">注册</button>
+		</div>
+      </div>
+      <!-- END登录 -->
+      
+      <!-- 注册 -->
+      <div id="registerDiv" style="display:none">
+        <div class="form-group has-feedback feedback-left">
+          <input type="text" placeholder="请输入邮箱" class="form-control" name="email" id="email" />
+          <span class="mdi mdi-email form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="form-group has-feedback feedback-left">
+          <input type="text" placeholder="请输入用户名" class="form-control" name="registerUsername" id="registerUsername" />
+          <span class="mdi mdi-account form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="form-group has-feedback feedback-left">
+          <input type="password" placeholder="请输入密码" class="form-control" id="registerPassword" name="password" />
+          <span class="mdi mdi-lock form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="form-group">
+		  <button class="btn btn-block btn-primary" type="button" onclick="getCode()">获取邮箱验证码</button>
+		</div>
+        <div class="form-group has-feedback feedback-left">
+          <input type="text" placeholder="请输入邮箱验证码" class="form-control" name="code" id="registerCode" />
+          <span class="mdi mdi-code-equal form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-block btn-primary" type="button" onclick="submitRegister()">立即注册</button>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-block btn-primary" type="button" onclick="openDiv(0)">返回登录</button>
+        </div>
+      </div>
+      <!-- END注册 -->
+      <hr>
+      <footer class="col-sm-12 text-center">
+        <p class="m-b-0">Copyright © 2020 <a >DCL</a>. B/S云文件管理系统</p>
+      </footer>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script src="js/jconfirm/jquery-confirm.min.js"></script>
+<script type="text/javascript" src="js/main.min.js"></script>
+<script type="text/javascript" src="js/JavaScript_util.js"></script>
+<script type="text/javascript" src="js/WebSocket.js"></script>
+<script type="text/javascript">
+	//监听回车键
+	$(document).keyup(function(event){  
+	    if(event.keyCode ==13){  
+	    	submitLogin();
+	    }
+	});
+	//提交登录
+	function submitLogin(){
+		var account = $("#account").val();
+		var password = $("#password").val();
+		if(account==null || account==""){
+			alert("用户名不能为空！");
+			return;
+		}
+		if(password==null || password==""){
+			alert("密码不能为空！");
+			return;
+		}
+		$.ajax({
+			type : "POST",//方法类型
+			dataType : "json",//预期服务器返回的数据类型
+			url :  getURL() + "account/login",
+			data : {
+				account : account,
+				password : password
+			},
+			success : function(result) {
+				if(result.type=="0"){
+					sessionStorage.setItem("account",result.account);
+					sessionStorage.setItem("userName",result.userName);
+					sessionStorage.setItem("image",result.image);
+					sessionStorage.setItem("nowPath",result.account);
+					if(result.role == 1){
+						skipPage("index.html");
+					}else if(result.role == 0){
+						skipPage("admin_pages/index.html");
+					}
+				}else if(result.type=="2"){
+					alert("登录密码不正确！");
+				}else if(result.type=="1"){
+					alert("账号不存在！");
+				}else if(result.type=="3"){
+					alert("账号已冻结！");
+				}
+			},
+			error : function(e){
+				
+			}
+		});
+	}
+	//提交注册
+	function submitRegister(){
+		var account = $("#email").val();
+		var username = $("#registerUsername").val();
+		var password = $("#registerPassword").val();
+		var code = $("#registerCode").val();
+		if(account==null || account==""){
+			alert("邮箱不能为空！");
+			return;
+		}
+		if(username==null || username==""){
+			alert("用户名不能为空！");
+			return;
+		}
+		if(password==null || password==""){
+			alert("密码不能为空！");
+			return;
+		}
+		if(code==null || code==""){
+			alert("验证码不能为空！");
+			return;
+		}
+		$.ajax({
+			type : "POST",//方法类型
+			dataType : "json",//预期服务器返回的数据类型
+			url : getURL()+"account/register",
+			data : {
+				account : account,
+				userName : username,
+				password : password,
+				code : code
+			},
+			success : function(result) {
+				Code = "";//清除验证码
+				if(result.type == 0){
+					alert("注册成功！");
+					openDiv(0);
+				}else if(result.type == 3){
+					alert("验证码错误！");
+				}else if(result.type == 1){
+					alert("账号已存在！");
+				}
+			},
+			error : function(e){
+				
+			}
+		});
+	}
+	//获取注册验证码
+	function getCode(){
+		var account = $("#email").val();
+		if(account.indexOf('@')==0 || account.indexOf('@')==account.length-1 || account.indexOf('@')<0){
+			alert("邮箱格式不正确！");
+			return;
+		}
+		$.ajax({
+			type : "POST",//方法类型
+			dataType : "json",//预期服务器返回的数据类型
+			url : getURL() + "account/emailCode",
+			data : {
+				email : account
+			},
+			success : function(result) {
+				if(result.type=="2"){
+					alert("验证码发送失败，请重试！");
+				}else if(result.type=="1"){
+					alert("用户已存在！");
+				}else{
+					Code = result.code;
+					alert("验证码发送成功，请注意查收！");
+				}
+			},
+			error : function(e){
+				alert("错误");
+			}
+		});
+	}
+	//设置显示DIV
+	function openDiv(type){
+		if(type == 0){
+			document.getElementById("loginDiv").style.display = "block";
+			document.getElementById("registerDiv").style.display = "none";
+		}else if(type == 1){
+			document.getElementById("loginDiv").style.display = "none";
+			document.getElementById("registerDiv").style.display = "block";
+		}
+	}
+</script>
+</body>
+</html>

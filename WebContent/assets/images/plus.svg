@@ -1,0 +1,16 @@
+<svg id="plus_icon" data-name="plus icon" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #19a299;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <rect id="Rounded_Rectangle_1_copy" data-name="Rounded Rectangle 1 copy" class="cls-1" width="50" height="50" rx="3" ry="3"/>
+  <path id="_" data-name="+" class="cls-2" d="M24.3,31.989H26.69V26.668H32V24.335H26.69V18.989H24.3v5.347H19v2.333h5.3v5.321Z"/>
+</svg>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>LStorage</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/cloud_icon.png" />
+    <link type="text/css" rel="stylesheet" href="css/share_public_file.css" />
+</head>
+
+<body>
+    <a href="login.html">
+    	<img src="images/LStorage.png"/>
+    </a>
+    <div class="wrapper">
+        <div class="header">
+            <div class="user">
+                <img id="user_img" src=""/>
+                <span class="name" id="user_name"></span>
+            </div>
+            <div class="header_tip">向您分享了加密文件</div>
+        </div>
+        <div class="tiquma">
+            <div class="tiquma_tip">请输入提取码</div>
+            <div class="input">
+                <input id="clock_password"/>
+                <div class="button" onclick="download_file()">提取文件</div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/JavaScript_util.js"></script>
+<script type="text/javascript">
+
+var url = window.location.href;
+var s_url = url.split("share_public_file.html?")[0];
+var img_url = url.split("LStorage/")[0] + "image/";
+var context = url.split("?context=")[1];
+var path;
+var fileNames;
+$.ajax({
+	type : "POST",//方法类型
+	dataType : "json",//预期服务器返回的数据类型
+	url :  s_url + "rsa/decrypt_url",
+	data : {
+		context : context,
+		password : ""
+	},
+	success : function(result) {
+		path = result.path;
+		fileNames = result.fileNames;
+		document.getElementById('user_img').src = img_url + "DStorageFileStorage/userImage/" + result.image;
+		document.getElementById('user_name').innerHTML = result.userName;
+	},
+	error : function(e){
+		
+	}
+});
+
+function download_file(){
+	var p = $("#clock_password").val();
+	if(p == null || p == ""){
+		alert("密码不能为空");
+		return;
+	}
+	$.ajax({
+		type : "POST",//方法类型
+		dataType : "json",//预期服务器返回的数据类型
+		url :  s_url + "rsa/decrypt_url",
+		data : {
+			context : context,
+			password : p
+		},
+		success : function(result) {
+			if(!result.flag){
+				alert("密码错误");
+				return;
+			}else{
+				window.location.href= s_url + "download_public_file?fileNames="+fileNames+"&path="+path;
+			}
+		},
+		error : function(e){
+			
+		}
+	});
+}
+</script>
+</body>
+</html>
